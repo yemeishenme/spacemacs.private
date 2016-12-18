@@ -42,6 +42,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     ivy
      helm
      auto-completion
      better-defaults
@@ -132,14 +133,16 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(
+                         spacemacs-dark
+                         spacemacs-light
+                         )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 28
+                               :size 24
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -301,8 +304,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
       ("org-cn"   . "http://elpa.emacs-china.org/org/")
       ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
+  (setq tramp-ssh-controlmaster-options
+        "-o ControlMaster=auto -o ControlPath=tramp.%%C' -o ControlPersist=no")
+  
   (setq-default git-magit-status-fullscreen t)
-
   (setq-default git-enable-magit-svn-plugin t)
   )
 
@@ -319,14 +324,15 @@ you should place your code here."
   ;; 设置窗口位置
   (set-frame-position (selected-frame) 0 0)
   ;; 设置窗口大小
-  (set-frame-width (selected-frame) 80)
-  (set-frame-height (selected-frame) 38)
+  (set-frame-width (selected-frame) 86)
+  (set-frame-height (selected-frame) 44)
   ;;(set-default default-directory "D:/")
   ;; git
   (setq magit-repository-directories '("~/repos/"))
   ;; Global git commit mode
   (global-git-commit-mode t)
-  )
+  
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -342,3 +348,4 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
