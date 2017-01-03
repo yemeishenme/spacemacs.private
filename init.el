@@ -53,7 +53,7 @@ values."
      (shell :variables
              shell-default-height 25
              shell-default-position 'bottom)
-     spell-checking
+     ;spell-checking
      syntax-checking
      version-control
      )
@@ -142,7 +142,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 24
+                               :size 20
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -324,8 +324,8 @@ you should place your code here."
   ;; 设置窗口位置
   (set-frame-position (selected-frame) 0 0)
   ;; 设置窗口大小
-  (set-frame-width (selected-frame) 86)
-  (set-frame-height (selected-frame) 44)
+  (set-frame-width (selected-frame) 100)
+  (set-frame-height (selected-frame) 55)
   ;;(set-default default-directory "D:/")
   ;; git
   (setq magit-repository-directories '("~/repos/"))
@@ -341,7 +341,7 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("d:/ABC.org"))))
+ '(org-agenda-files (quote ("d:/org/Readme.org"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
