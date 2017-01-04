@@ -27,10 +27,11 @@ values."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.private")
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     figlet
      (chinese :variables
               chinese-enable-youdao-dict t)
      csv
@@ -44,18 +45,29 @@ values."
      ;; ----------------------------------------------------------------
      ivy
      helm
-     auto-completion
+     (auto-completion
+      :variables
+      ;; auto-completion-front-end 'auto-complete
+      auto-completion-return-key-behavior 'complete
+      auto-completion-tab-key-behavior 'cycle
+      auto-completion-enable-snippets-in-popup t
+      auto-completion-complete-with-key-sequence nil
+      auto-completion-complete-with-key-sequence-delay 0.1
+      auto-completion-private-snippets-directory (concat (car dotspacemacs-configuration-layer-path) "snippets/")
+      auto-completion-enable-sort-by-usage t
+      )
      better-defaults
      emacs-lisp
      git
      markdown
      org
-     (shell :variables
-             shell-default-height 25
-             shell-default-position 'bottom)
+     ;;(shell :variables
+     ;;        shell-default-height 25
+     ;;        shell-default-position 'bottom)
+
      ;spell-checking
-     syntax-checking
-     version-control
+     ;;syntax-checking
+     ;;version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -290,6 +302,8 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
+   ;; 行号
+   global-linum-mode t
    ))
 
 (defun dotspacemacs/user-init ()
@@ -341,7 +355,19 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("d:/org/Readme.org"))))
+ '(org-agenda-files (quote ("d:/org/Readme.org")))
+ '(linum-relative-mode t)
+ ;; 好使了
+ ;;'(org-todo-keywords (quote ((sequence "TODO" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED"))))
+ '(org-log-done (quote time))
+ ;; 捕获
+ '(org-default-notes-file "d:/git/workspace/notes.org")
+ '(org-capture-templates
+       (quote (("t" "Todo" entry (file+headline "d:/git/workspace/gtd.org" "Tasks")
+          "* TODO %?\n %i\n %a")
+         ("j" "Journal" entry (file+datetree "d:/git/workspace/journal.org")
+          "* %?\nEntered on %U\n %i\n %a"))))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
