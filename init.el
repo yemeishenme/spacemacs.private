@@ -376,6 +376,7 @@ you should place your code here."
  '(org-default-notes-file "d:/git/workspace/notes.org")
  '(org-capture-templates
    (quote (
+           ("t" "Todo"    entry (file+headline "d:/git/workspace/tasks.org" "Tasks") "* TODO %? [%]Entered on %T\n")
            ;; 任务
            ("t" "Todo"    entry (file+headline "d:/git/workspace/tasks.org" "Tasks") "* TODO %? [%]Entered on %T\n")
            ;; 书单
