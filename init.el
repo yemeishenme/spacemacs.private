@@ -27,11 +27,10 @@ values."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '("~/.spacemacs.private")
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d")
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     figlet
      (chinese :variables
               chinese-enable-youdao-dict t)
      csv
@@ -146,6 +145,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         monokai
                          spacemacs-dark
                          spacemacs-light
                          )
@@ -223,7 +223,7 @@ values."
    ;; in all non-asynchronous sources. If set to `source', preserve individual
    ;; source settings. Else, disable fuzzy matching in all sources.
    ;; (default 'always)
-   dotspacemacs-helm-use-fuzzy 'always
+   dotspacemacs-helm-use-fuzzy 'source
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
    dotspacemacs-enable-paste-transient-state nil
@@ -241,7 +241,7 @@ values."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native nil
@@ -270,7 +270,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -321,8 +321,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath=tramp.%%C' -o ControlPersist=no")
   
-  (setq-default git-magit-status-fullscreen t)
-  (setq-default git-enable-magit-svn-plugin t)
+  ;; 激活自动补全
+  (add-hook 'after-init-hook 'global-company-mode)
   )
 
 (defun dotspacemacs/user-config ()
@@ -333,19 +333,19 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;;(spacemacs//set-monospaced-font "Consolas" "Consolas" 14 20)
-  ;; 显示行号
+  ;; 显示行号,不好使
   (linum-relative-mode t)
   ;; 设置窗口位置
   (set-frame-position (selected-frame) 0 0)
   ;; 设置窗口大小
   (set-frame-width (selected-frame) 100)
   (set-frame-height (selected-frame) 55)
-  ;;(set-default default-directory "D:/")
-  ;; git
-  (setq magit-repository-directories '("~/repos/"))
+
   ;; Global git commit mode
   (global-git-commit-mode t)
-  
+
+  ;; org-mode 计时功能
+  ;;(org-clock-persistence-insinuate)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -355,18 +355,36 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("d:/org/Readme.org")))
+ '(org-agenda-files (quote ("d:/git/workspace/")))
  '(linum-relative-mode t)
- ;; 好使了
- ;;'(org-todo-keywords (quote ((sequence "TODO" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED"))))
+ ;; 设置关键字 
+ '(org-todo-keywords (quote ((sequence "TODO(t)" "Start" "|" "CANCEL(c)" "DONE(d)")
+                             )))
+ ;; 完成时插入时间
  '(org-log-done (quote time))
- ;; 捕获
+ ;; 设置TOD等关键字的颜色
+ '(org-todo-keyword-faces (quote (("TODO" . org-warning)
+                                  ("CANCEL" . "black")
+                                  )))
+ ;; 当子任务未完成，父任务不可标记为完成
+ '(org-enforce-todo-dependencies t)
+
+ ;; 计时功能设置
+ ;; '(org-clock-persist (quote history))
+ ;; (org-clock-persistence-insinuate)
+ ;; 捕获的默认文件
  '(org-default-notes-file "d:/git/workspace/notes.org")
  '(org-capture-templates
-       (quote (("t" "Todo" entry (file+headline "d:/git/workspace/gtd.org" "Tasks")
-          "* TODO %?\n %i\n %a")
-         ("j" "Journal" entry (file+datetree "d:/git/workspace/journal.org")
-          "* %?\nEntered on %U\n %i\n %a"))))
+   (quote (
+           ;; 任务
+           ("t" "Todo"    entry (file+headline "d:/git/workspace/tasks.org" "Tasks") "* TODO %? Entered on %T\n")
+           ;; 日记
+           ("j" "Journal" entry (file+datetree "d:/git/workspace/journal.org")       "* %? Entered on %U\n %i\n %a")
+           ;; 书单
+           ("b" "Book"    entry (file+headline "d:/git/workspace/books.org" "书") "* TODO 《%?》 Entered on %T\n")
+           ;; Music
+           ("m" "Music"   entry (file+headline "d:/git/workspace/music.org" "音乐") "* 《%?》 Entered on %T\n")
+           )))
  )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
