@@ -377,11 +377,11 @@ you should place your code here."
  '(org-capture-templates
    (quote (
            ;; 任务
-           ("t" "Todo"    entry (file+headline "d:/git/workspace/tasks.org" "Tasks") "* TODO %? Entered on %T\n")
+           ("t" "Todo"    entry (file+headline "d:/git/workspace/tasks.org" "Tasks") "* TODO %? [%]Entered on %T\n")
            ;; 日记
            ("j" "Journal" entry (file+datetree "d:/git/workspace/journal.org")       "* %? Entered on %U\n %i\n %a")
            ;; 书单
-           ("b" "Book"    entry (file+headline "d:/git/workspace/books.org" "书") "* TODO 《%?》 Entered on %T\n")
+           ("b" "Book"    entry (file+headline "d:/git/workspace/books.org" "书")    "* TODO 《%?》 [%]Entered on %T\n")
            ;; Music
            ("m" "Music"   entry (file+headline "d:/git/workspace/music.org" "音乐") "* 《%?》 Entered on %T\n")
            )))
