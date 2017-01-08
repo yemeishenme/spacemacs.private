@@ -336,10 +336,10 @@ you should place your code here."
   ;; 显示行号,不好使
   (linum-relative-mode t)
   ;; 设置窗口位置
-  (set-frame-position (selected-frame) 0 0)
+  ;(set-frame-position (selected-frame) 0 0)
   ;; 设置窗口大小
-  (set-frame-width (selected-frame) 100)
-  (set-frame-height (selected-frame) 55)
+  ;(set-frame-width (selected-frame) 100)
+  ;(set-frame-height (selected-frame) 55)
 
   ;; Global git commit mode
   (global-git-commit-mode t)
