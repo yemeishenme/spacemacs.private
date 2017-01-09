@@ -355,40 +355,45 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(linum-relative-mode t t)
  '(org-agenda-files (quote ("d:/git/workspace/")))
- '(linum-relative-mode t)
- ;; 设置关键字 
- '(org-todo-keywords (quote ((sequence "TODO(t)" "Start" "|" "CANCEL(c)" "DONE(d)")
-                             )))
- ;; 完成时插入时间
- '(org-log-done (quote time))
- ;; 设置TOD等关键字的颜色
- '(org-todo-keyword-faces (quote (("TODO" . org-warning)
-                                  ("CANCEL" . "black")
-                                  )))
- ;; 当子任务未完成，父任务不可标记为完成
- '(org-enforce-todo-dependencies t)
-
- ;; 计时功能设置
- ;; '(org-clock-persist (quote history))
- ;; (org-clock-persistence-insinuate)
- ;; 捕获的默认文件
- '(org-default-notes-file "d:/git/workspace/notes.org")
  '(org-capture-templates
-   (quote (
-           ("t" "Todo"    entry (file+headline "d:/git/workspace/tasks.org" "Tasks") "* TODO %? [%]Entered on %T\n")
-           ;; 任务
-           ("t" "Todo"    entry (file+headline "d:/git/workspace/tasks.org" "Tasks") "* TODO %? [%]Entered on %T\n")
-           ;; 书单
-           ("b" "Book"    entry (file+headline "d:/git/workspace/books.org" "书")    "* TODO 《%?》 [%]Entered on %T\n")
-           ;; 新概念英语
-           ("e" "新概念"    entry (file+headline "d:/git/workspace/新概念英语.org" "新概念英语第2册")    "* TODO %? Entered on %T\n")
-           ;; 日记
-           ("j" "Journal" entry (file+datetree "d:/git/workspace/journal.org")       "* %? Entered on %U\n %i\n %a")
-           ;; Music
-           ("m" "Music"   entry (file+headline "d:/git/workspace/music.org" "音乐") "* 《%?》 Entered on %T\n")
-           )))
- )
+   (quote
+    (("t" "Todo" entry
+      (file+headline "d:/git/workspace/tasks.org" "Tasks")
+      "* TODO %? [%]Entered on %T
+")
+     ("t" "Todo" entry
+      (file+headline "d:/git/workspace/tasks.org" "Tasks")
+      "* TODO %? [%]Entered on %T
+")
+     ("b" "Book" entry
+      (file+headline "d:/git/workspace/books.org" "书")
+      "* TODO 《%?》 [%]Entered on %T
+")
+     ("e" "新概念" entry
+      (file+headline "d:/git/workspace/新概念英语.org" "新概念英语第2册")
+      "* TODO %? Entered on %T
+")
+     ("j" "Journal" entry
+      (file+datetree "d:/git/workspace/journal.org")
+      "* %? Entered on %U
+ %i
+ %a")
+     ("m" "Music" entry
+      (file+headline "d:/git/workspace/music.org" "音乐")
+      "* 《%?》 Entered on %T
+"))))
+ '(org-default-notes-file "d:/git/workspace/notes.org")
+ '(org-enforce-todo-dependencies t)
+ '(org-log-done (quote time))
+ '(org-todo-keyword-faces (quote (("TODO" . org-warning) ("CANCEL" . "black"))))
+ '(org-todo-keywords
+   (quote
+    ((sequence "TODO(t)" "Start" "|" "CANCEL(c)" "DONE(d)"))))
+ '(package-selected-packages
+   (quote
+    (w3m monokai-theme youdao-dictionary xterm-color ws-butler window-numbering which-key wgrep web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit spacemacs-theme spaceline smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters racket-mode quelpa pug-mode powershell popwin persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum linum-relative link-hint less-css-mode ivy-hydra info+ indent-guide ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump define-word csv-mode counsel-projectile company-web company-statistics column-enforce-mode clean-aindent-mode chinese-pyim auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
